@@ -35,8 +35,11 @@ public class ClearCustomUserTextField{
     public static void clearField() throws URISyntaxException, IOException {
         System.out.println("Clearing the value...");
 
-        try (RallyRestApi restApi = createRestApi()) {
+        RallyRestApi restApi = createRestApi();
+        try {
             update(restApi, USER_REF, "");
+        } finally {
+            restApi.close();
         }
     }
 
@@ -45,8 +48,11 @@ public class ClearCustomUserTextField{
         String newComment = new Date().getTime()+""; //converting long to string
         System.out.println("Updating value to: " + newComment);
 
-        try (RallyRestApi restApi = createRestApi()) {
+        RallyRestApi restApi = createRestApi();
+        try {
             update(restApi, USER_REF, newComment);
+        } finally {
+            restApi.close();
         }
     }
 
